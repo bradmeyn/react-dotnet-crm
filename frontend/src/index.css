@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-slate-800;
+  }
+
+  h1 {
+    @apply text-slate-900 font-bold text-2xl;
+  }
+
+  h2 {
+    @apply text-slate-500;
+  }
+
+  h3 {
+    @apply text-slate-600 font-semibold;
+  }
+
+  label {
+    @apply text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong mb-2 block;
+  }
+}
