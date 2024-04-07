@@ -16,6 +16,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as RegisterIndexImport } from './routes/register/index'
 import { Route as LoginIndexImport } from './routes/login/index'
 import { Route as ClientsClientsIndexImport } from './routes/_clients/clients/index'
+import { Route as ClientsClientsClientIdImport } from './routes/_clients/clients/$clientId'
 
 // Create/Update Routes
 
@@ -44,6 +45,11 @@ const ClientsClientsIndexRoute = ClientsClientsIndexImport.update({
   getParentRoute: () => ClientsRoute,
 } as any)
 
+const ClientsClientsClientIdRoute = ClientsClientsClientIdImport.update({
+  path: '/clients/$clientId',
+  getParentRoute: () => ClientsRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -64,6 +70,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterIndexImport
       parentRoute: typeof rootRoute
     }
+    '/_clients/clients/$clientId': {
+      preLoaderRoute: typeof ClientsClientsClientIdImport
+      parentRoute: typeof ClientsImport
+    }
     '/_clients/clients/': {
       preLoaderRoute: typeof ClientsClientsIndexImport
       parentRoute: typeof ClientsImport
@@ -75,7 +85,10 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  ClientsRoute.addChildren([ClientsClientsIndexRoute]),
+  ClientsRoute.addChildren([
+    ClientsClientsClientIdRoute,
+    ClientsClientsIndexRoute,
+  ]),
   LoginIndexRoute,
   RegisterIndexRoute,
 ])

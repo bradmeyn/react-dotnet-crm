@@ -42,7 +42,7 @@ export async function getClient(id: number) {
 export async function addClient(client: Client) {
   try {
     const response = await axios.post(baseUrl, client);
-    return response.data; // Returns the created client object
+    return response.data;
   } catch (error) {
     // Handle error
     console.error("There was an error adding the client:", error);
@@ -51,14 +51,14 @@ export async function addClient(client: Client) {
 }
 
 // Update an existing client
-export async function updateClient(id: number, client: Client) {
+export async function updateClient(client: Client) {
   try {
-    const response = await axios.put(`${baseUrl}/${id}`, client);
-    return response.data; // Depending on your API, you may adjust what's returned here
+    const response = await axios.put(`${baseUrl}/${client.id}`, client);
+    return response.data;
   } catch (error) {
     // Handle error
     console.error(
-      `There was an error updating the client with ID ${id}:`,
+      `There was an error updating the client with ID ${client.id}:`,
       error
     );
     throw error;
@@ -69,7 +69,7 @@ export async function updateClient(id: number, client: Client) {
 export async function deleteClient(id: number) {
   try {
     const response = await axios.delete(`${baseUrl}/${id}`);
-    return response.data; // Depending on your API, you may adjust what's returned here
+    return response.data;
   } catch (error) {
     // Handle error
     console.error(

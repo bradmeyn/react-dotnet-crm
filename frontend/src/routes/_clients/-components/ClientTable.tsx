@@ -8,6 +8,7 @@ import {
 } from "@tremor/react";
 
 import { type Client } from "../../../services/clients";
+import { Link } from "@tanstack/react-router";
 
 export default function ClientTable({ clients }: { clients: Client[] }) {
   return (
@@ -43,7 +44,15 @@ export default function ClientTable({ clients }: { clients: Client[] }) {
 function ClientRow({ client }: { client: Client }) {
   return (
     <TableRow>
-      <TableCell>{client.id}</TableCell>
+      <TableCell>
+        <Link
+          to="/clients/$clientId"
+          params={{ clientId: client.id!.toString() }}
+          className="text-tremor-brand underline underline-offset-2"
+        >
+          {client.id}
+        </Link>
+      </TableCell>
       <TableCell>{client.firstName}</TableCell>
       <TableCell>{client.lastName}</TableCell>
       <TableCell>{client.phone}</TableCell>

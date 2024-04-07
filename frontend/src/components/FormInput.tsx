@@ -1,4 +1,3 @@
-import { RiErrorWarningFill } from "@remixicon/react";
 import { TextInput } from "@tremor/react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
@@ -8,7 +7,7 @@ type PropTypes = {
   type: "text" | "password" | "email" | "url" | undefined;
   placeholder: string;
   register: UseFormRegisterReturn;
-  error?: string | null;
+  error?: string | undefined;
 };
 
 export default function FormInput({
@@ -27,14 +26,9 @@ export default function FormInput({
         type={type}
         placeholder={placeholder}
         {...register}
-        className={`${error ? "border border-red-500" : ""}`}
+        errorMessage={error}
+        error={!!error}
       />
-      {error ? (
-        <small className="text-sm mt-1 text-red-700 flex items-center gap-1">
-          <RiErrorWarningFill size={16} />
-          <span>{error}</span>
-        </small>
-      ) : null}
     </>
   );
 }

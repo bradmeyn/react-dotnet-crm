@@ -1,9 +1,6 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
-import { RiUserLine } from "@remixicon/react";
 import { Link } from "@tanstack/react-router";
-
 import DashboardHeader from "./_clients/-components/DashboardHeader";
-import AddClientModal from "./_clients/-components/AddClientModal";
 
 export const Route = createFileRoute("/_clients")({
   component: ClientsLayout,
@@ -26,19 +23,8 @@ export default function ClientsLayout() {
                 Clients
               </Link>
             </li>
-            <li>
-              <Link
-                to="/tasks"
-                className="flex items-center gap-2 p-2 rounded-lg"
-                activeProps={{ className: "text-tremor-brand" }}
-                inactiveProps={{ className: "text-slate-700 bg-transparent" }}
-              >
-                Tasks
-              </Link>
-            </li>
           </ul>
         </nav>
-        <AddClientModal />
       </div>
       <main className="flex-1 bg-tremor-background-muted rounded-lg container">
         <Outlet />

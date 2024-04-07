@@ -10,10 +10,13 @@ import { addClient, type Client } from "../../../services/clients";
 import { z } from "zod";
 
 const clientSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  phone: z.string(),
-  email: z.string(),
+  firstName: z.string().min(2, "Must be at least 2 characters"),
+  lastName: z.string().min(2, "Must be at least 2 characters"),
+  phone: z
+    .string()
+    .regex(/^\d+$/, "Phone number must be numeric")
+    .min(1, "Phone is required"),
+  email: z.string().email(),
 });
 
 export default function AddClientModal() {
@@ -92,7 +95,7 @@ export default function AddClientModal() {
                 label="Phone"
                 id="phone"
                 type="text"
-                placeholder="555-555-5555"
+                placeholder="04xxxxxxxx"
                 register={register("phone")}
                 error={errors.phone?.message}
               />
@@ -102,7 +105,7 @@ export default function AddClientModal() {
                 label="Email"
                 id="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="user@mail.com"
                 register={register("email")}
                 error={errors.email?.message}
               />

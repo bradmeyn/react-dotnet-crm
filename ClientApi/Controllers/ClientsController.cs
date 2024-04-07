@@ -28,6 +28,9 @@ namespace ClientApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
+
+              //log the client data to the console
+            System.Console.WriteLine(id);
             var client = await _context.Clients.FindAsync(id);
 
             if (client == null)
@@ -55,6 +58,7 @@ namespace ClientApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClient(int id, Client client)
         {
+
             if (id != client.Id)
             {
                 return BadRequest();
