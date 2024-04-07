@@ -15,7 +15,9 @@ export function ClientPage() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className=" mb-3">Name</h1>
+        <h1 className=" mb-3">
+          {client.firstName} {client.lastName}
+        </h1>
 
         <div className="flex items-center gap-4">
           <EditClientModal client={client} />
