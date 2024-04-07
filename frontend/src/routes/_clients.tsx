@@ -15,7 +15,7 @@ export default function ClientsLayout() {
       <DashboardHeader />
       <div className="container flex justify-between items-center">
         <nav className="py-4">
-          <ul className="flex justify-start gap-4 items-center">
+          <ul className="flex justify-start gap-2 items-center">
             <li>
               <Link
                 to="/clients"
@@ -23,8 +23,17 @@ export default function ClientsLayout() {
                 activeProps={{ className: "text-tremor-brand" }}
                 inactiveProps={{ className: "text-slate-700 bg-transparent" }}
               >
-                <RiUserLine size={24} />
                 Clients
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/tasks"
+                className="flex items-center gap-2 p-2 rounded-lg"
+                activeProps={{ className: "text-tremor-brand" }}
+                inactiveProps={{ className: "text-slate-700 bg-transparent" }}
+              >
+                Tasks
               </Link>
             </li>
           </ul>

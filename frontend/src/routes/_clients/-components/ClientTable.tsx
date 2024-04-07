@@ -7,33 +7,28 @@ import {
   TableCell,
 } from "@tremor/react";
 
-export default function ClientTable() {
-  const clients = [
-    {
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      phone: "123456789",
-      email: "fake@mail.com",
-    },
-    {
-      id: 2,
-      firstName: "Jane",
-      lastName: "Doe",
-      phone: "123456789",
-      email: "coolguy@mail.com",
-    },
-  ];
+import { type Client } from "../../../services/clients";
 
+export default function ClientTable({ clients }: { clients: Client[] }) {
   return (
     <Table>
       <TableHead className="border-b">
         <TableRow>
-          <TableHeaderCell>Id</TableHeaderCell>
-          <TableHeaderCell>First name</TableHeaderCell>
-          <TableHeaderCell>Last name</TableHeaderCell>
-          <TableHeaderCell>Phone</TableHeaderCell>
-          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell className="text-slate-900 uppercase">
+            Id
+          </TableHeaderCell>
+          <TableHeaderCell className="text-slate-900 uppercase">
+            First name
+          </TableHeaderCell>
+          <TableHeaderCell className="text-slate-900 uppercase">
+            Last name
+          </TableHeaderCell>
+          <TableHeaderCell className="text-slate-900 uppercase">
+            Phone
+          </TableHeaderCell>
+          <TableHeaderCell className="text-slate-900 uppercase">
+            Email
+          </TableHeaderCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -45,7 +40,7 @@ export default function ClientTable() {
   );
 }
 
-function ClientRow({ client }) {
+function ClientRow({ client }: { client: Client }) {
   return (
     <TableRow>
       <TableCell>{client.id}</TableCell>

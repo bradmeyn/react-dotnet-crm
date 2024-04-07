@@ -1,6 +1,9 @@
 {
   "name": "frontend",
   "private": true,
+  "proxy": {
+    "/api": "http://localhost:5085"
+  },
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -17,6 +20,7 @@
     "@tanstack/react-router": "^1.16.6",
     "@tanstack/router-devtools": "^1.16.6",
     "@tremor/react": "^3.13.4",
+    "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.1",

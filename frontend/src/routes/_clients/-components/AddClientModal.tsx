@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormInput from "../../../components/FormInput";
 
+import { addClient, type Client } from "../../../services/clients";
+
 import { z } from "zod";
 
 const clientSchema = z.object({
@@ -18,6 +20,7 @@ export default function AddClientModal() {
   const [isOpen, setIsOpen] = useState(false);
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(clientSchema),
@@ -28,6 +31,16 @@ export default function AddClientModal() {
       email: "",
     },
   });
+
+  const onSubmit = async (data: Client) => {
+    try {
+      console.log(data);
+      await addClient(data);
+      setIsOpen(false);
+    } catch (error) {
+      console.error("There was an error adding the client:", error);
+    }
+  };
 
   return (
     <div className="flex justify-center">
@@ -49,7 +62,10 @@ export default function AddClientModal() {
             </button>
           </div>
 
-          <form className="grid grid-cols-2 gap-2">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid grid-cols-2 gap-2"
+          >
             <div className="col-span-2 md:col-span-1">
               <FormInput
                 label="First Name"
@@ -70,6 +86,7 @@ export default function AddClientModal() {
                 error={errors.lastName?.message}
               />
             </div>
+
             <div className="col-span-2">
               <FormInput
                 label="Phone"

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 public class Client
 {
     [Key]
-    public int ClientId { get; set; }
+    public int Id { get; set; }
     
     [Required]
     [StringLength(50)]
@@ -14,9 +14,6 @@ public class Client
     [StringLength(50)]
     public string LastName { get; set; } = string.Empty;
     
-    [Required]
-    [DataType(DataType.Date)]
-    public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
     
     [Required]
     [Phone]
