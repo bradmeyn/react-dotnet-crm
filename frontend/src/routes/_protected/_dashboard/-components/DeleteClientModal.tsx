@@ -1,7 +1,7 @@
 import { RiCloseLine, RiDeleteBinLine } from "@remixicon/react";
 import { Dialog, DialogPanel } from "@tremor/react";
 import { useState } from "react";
-import { deleteClient } from "../../../services/clients";
+import { deleteClient } from "../../../lib/services/clients";
 
 import { useNavigate } from "@tanstack/react-router";
 

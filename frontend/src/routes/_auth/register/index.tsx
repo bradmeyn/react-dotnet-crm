@@ -3,12 +3,12 @@ import { Divider, Card } from "@tremor/react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import FormInput from "../../components/FormInput";
+import FormInput from "../../../lib/components/FormInput";
 import { RiCheckFill, RiErrorWarningFill } from "@remixicon/react";
 import { useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/register/")({
+export const Route = createFileRoute("/_auth/register/")({
   component: RegisterPage,
 });
 

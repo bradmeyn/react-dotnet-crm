@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Card } from "@tremor/react";
-import ClientTable from "../-components/ClientTable";
-import { useEffect, useState } from "react";
-import { getClients, type Client } from "../../../services/clients";
+import { getClients, type Client } from "../../../../lib/services/clients";
 import { RiUser3Fill } from "@remixicon/react";
 import AddClientModal from "../-components/AddClientModal";
+import { Card } from "@tremor/react";
+import { useEffect, useState } from "react";
+import ClientTable from "../-components/ClientTable";
 
-export const Route = createFileRoute("/_clients/clients/")({
+export const Route = createFileRoute("/_protected/_dashboard/dashboard/")({
   component: ClientsPage,
 });
 

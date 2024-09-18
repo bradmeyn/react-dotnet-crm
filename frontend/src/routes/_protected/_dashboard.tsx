@@ -1,8 +1,8 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import DashboardHeader from "./_clients/-components/DashboardHeader";
+import DashboardHeader from "./_dashboard/-components/DashboardHeader";
 
-export const Route = createFileRoute("/_clients")({
+export const Route = createFileRoute("/_protected/_dashboard")({
   component: ClientsLayout,
 });
 
@@ -15,7 +15,7 @@ export default function ClientsLayout() {
           <ul className="flex justify-start gap-2 items-center">
             <li>
               <Link
-                to="/clients"
+                to="/dashboard"
                 className="flex items-center gap-2 p-2 rounded-lg"
                 activeProps={{ className: "text-tremor-brand" }}
                 inactiveProps={{ className: "text-slate-700 bg-transparent" }}

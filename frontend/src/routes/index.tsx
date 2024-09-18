@@ -11,7 +11,7 @@ export default function Index() {
       <header className="flex justify-between container py-4">
         <span className="text-slate-900 font-bold">CRM</span>
         <Link
-          to="/clients"
+          to="/dashboard"
           className="rounded-full bg-tremor-brand text-white py-2 px-4 font-semibold"
         >
           Dashboard
@@ -31,7 +31,7 @@ export default function Index() {
             </p>
 
             <Link
-              to="/clients"
+              to="/dashboard"
               className="rounded-full bg-tremor-brand text-white py-3 px-4 font-semibold"
             >
               Get Started

@@ -11,44 +11,39 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ClientsImport } from './routes/_clients'
 import { Route as IndexImport } from './routes/index'
-import { Route as RegisterIndexImport } from './routes/register/index'
-import { Route as LoginIndexImport } from './routes/login/index'
-import { Route as ClientsClientsIndexImport } from './routes/_clients/clients/index'
-import { Route as ClientsClientsClientIdImport } from './routes/_clients/clients/$clientId'
+import { Route as ProtectedDashboardImport } from './routes/_protected/_dashboard'
+import { Route as AuthRegisterIndexImport } from './routes/_auth/register/index'
+import { Route as AuthLoginIndexImport } from './routes/_auth/login/index'
+import { Route as ProtectedDashboardDashboardIndexImport } from './routes/_protected/_dashboard/dashboard/index'
 
 // Create/Update Routes
-
-const ClientsRoute = ClientsImport.update({
-  id: '/_clients',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const RegisterIndexRoute = RegisterIndexImport.update({
-  path: '/register/',
+const ProtectedDashboardRoute = ProtectedDashboardImport.update({
+  id: '/_protected/_dashboard',
   getParentRoute: () => rootRoute,
 } as any)
 
-const LoginIndexRoute = LoginIndexImport.update({
-  path: '/login/',
+const AuthRegisterIndexRoute = AuthRegisterIndexImport.update({
+  id: '/_auth/register/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const ClientsClientsIndexRoute = ClientsClientsIndexImport.update({
-  path: '/clients/',
-  getParentRoute: () => ClientsRoute,
+const AuthLoginIndexRoute = AuthLoginIndexImport.update({
+  id: '/_auth/login/',
+  getParentRoute: () => rootRoute,
 } as any)
 
-const ClientsClientsClientIdRoute = ClientsClientsClientIdImport.update({
-  path: '/clients/$clientId',
-  getParentRoute: () => ClientsRoute,
-} as any)
+const ProtectedDashboardDashboardIndexRoute =
+  ProtectedDashboardDashboardIndexImport.update({
+    path: '/dashboard/',
+    getParentRoute: () => ProtectedDashboardRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -58,25 +53,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/_clients': {
-      preLoaderRoute: typeof ClientsImport
+    '/_protected/_dashboard': {
+      preLoaderRoute: typeof ProtectedDashboardImport
       parentRoute: typeof rootRoute
     }
-    '/login/': {
-      preLoaderRoute: typeof LoginIndexImport
+    '/_auth/login/': {
+      preLoaderRoute: typeof AuthLoginIndexImport
       parentRoute: typeof rootRoute
     }
-    '/register/': {
-      preLoaderRoute: typeof RegisterIndexImport
+    '/_auth/register/': {
+      preLoaderRoute: typeof AuthRegisterIndexImport
       parentRoute: typeof rootRoute
     }
-    '/_clients/clients/$clientId': {
-      preLoaderRoute: typeof ClientsClientsClientIdImport
-      parentRoute: typeof ClientsImport
-    }
-    '/_clients/clients/': {
-      preLoaderRoute: typeof ClientsClientsIndexImport
-      parentRoute: typeof ClientsImport
+    '/_protected/_dashboard/dashboard/': {
+      preLoaderRoute: typeof ProtectedDashboardDashboardIndexImport
+      parentRoute: typeof ProtectedDashboardImport
     }
   }
 }
@@ -85,12 +76,9 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  ClientsRoute.addChildren([
-    ClientsClientsClientIdRoute,
-    ClientsClientsIndexRoute,
-  ]),
-  LoginIndexRoute,
-  RegisterIndexRoute,
+  ProtectedDashboardRoute.addChildren([ProtectedDashboardDashboardIndexRoute]),
+  AuthLoginIndexRoute,
+  AuthRegisterIndexRoute,
 ])
 
 /* prettier-ignore-end */

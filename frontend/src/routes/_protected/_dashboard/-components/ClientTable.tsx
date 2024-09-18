@@ -7,7 +7,7 @@ import {
   TableCell,
 } from "@tremor/react";
 
-import { type Client } from "../../../services/clients";
+import { type Client } from "../../../lib/services/clients";
 import { Link } from "@tanstack/react-router";
 
 export default function ClientTable({ clients }: { clients: Client[] }) {
